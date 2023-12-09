@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/index.css" >
+
+
+<div class="form-input">
+    <input type="text" placeholder="Skill Name" id="skillName" /> <br/>
+    <input type="text" placeholder="level" id="level"/><br/>
+    <button id="btn">Input</button>
+</div>
+
+<script>
+    // WARNING: For POST requests, body is set to null by browsers.
+    function inputData(skillName, level) {
+        let input = {
+            skillName: skillName,
+            level: level
+        }
+        var data = JSON.stringify(input);
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                console.log(this.responseText);
+            }
+        });
+
+        xhr.open("POST", "http://localhost:3000/skill");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(data);
+        alert('sukses')
+    }
+
+    document.getElementById("btn").addEventListener('click', () => {
+        let skillName = document.getElementById("skillName").value;
+        let level = document.getElementById("level").value;
+        inputData(skillName, level)
+    })
+</script>
