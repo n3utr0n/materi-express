@@ -20,7 +20,7 @@ app.get('/profile/:nama', async (req, res) => {
   console.log(skill)
   res.render('index', {
     nama: req.params.nama,
-    skilll: skilll
+    skill: skill
   })
 })
 app.get('/update-skill', (req,res) => {
